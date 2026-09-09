@@ -3,6 +3,7 @@ package br.com.soc.sistema.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.soc.sistema.dao.CompromissoDao;
 import br.com.soc.sistema.dao.FuncionarioDao;
 import br.com.soc.sistema.exception.BusinessException;
 import br.com.soc.sistema.filter.FuncionarioFilter;
@@ -12,9 +13,11 @@ public class FuncionarioBusiness {
 
 	private static final String FOI_INFORMADO_CARACTER_NO_LUGAR_DE_UM_NUMERO = "Foi informado um caracter no lugar de um numero";
 	private FuncionarioDao dao;
+	private CompromissoDao compromissoDao;
 	
 	public FuncionarioBusiness() {
 		this.dao = new FuncionarioDao();
+		this.compromissoDao = new CompromissoDao();
 	}
 	
 	public List<FuncionarioVo> trazerTodosOsFuncionarios(){
@@ -61,5 +64,21 @@ public class FuncionarioBusiness {
 		}catch (NumberFormatException e) {
 			throw new BusinessException(FOI_INFORMADO_CARACTER_NO_LUGAR_DE_UM_NUMERO);
 		}
+	
 	}
+
+	public void excluirFuncionario(String codigo) {
+	    try {
+	        Integer cod = Integer.parseInt(codigo);
+
+	        // exclui primeiro os compromissos do funcionário
+	        compromissoDao.deleteCompromissosPorFuncionario(cod);
+
+	        // depois exclui o funcionário
+	        dao.deleteFuncionario(cod);
+
+	    } catch (NumberFormatException e) {
+	        throw new BusinessException(FOI_INFORMADO_CARACTER_NO_LUGAR_DE_UM_NUMERO);
+	    }
+	} 
 }

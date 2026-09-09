@@ -42,16 +42,25 @@ public class FuncionarioAction extends Action {
 	}
 	
 	public String editar() {
-		if(funcionarioVo.getRowid() == null)
-			return REDIRECT;
-		
-		funcionarioVo = business.buscarFuncionarioPor(funcionarioVo.getRowid());
-		
-		return INPUT;
+	    if(funcionarioVo.getRowid() == null)
+	        return REDIRECT;
+	    
+	    funcionarioVo = business.buscarFuncionarioPor(funcionarioVo.getRowid());
+	    
+	    return INPUT;
 	}
-	
+
+	public String excluir() {
+	    if (funcionarioVo.getRowid() == null)
+	        return REDIRECT;
+
+	    business.excluirFuncionario(funcionarioVo.getRowid());
+
+	    return REDIRECT;
+	}
+
 	public List<OpcoesComboBuscar> getListaOpcoesCombo(){
-		return Arrays.asList(OpcoesComboBuscar.values());
+	    return Arrays.asList(OpcoesComboBuscar.values());
 	}
 	
 	public List<FuncionarioVo> getFuncionarios() {

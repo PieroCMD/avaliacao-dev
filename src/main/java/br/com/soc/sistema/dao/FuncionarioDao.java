@@ -104,4 +104,20 @@ public class FuncionarioDao extends Dao {
 		}		
 		return null;
 	}
+
+//NOVO MÉTODO DE TESTE
+public void deleteFuncionario(Integer codigo) {
+ StringBuilder query = new StringBuilder("DELETE FROM funcionario WHERE rowid = ?");
+
+ try (
+     Connection con = getConexao();
+     PreparedStatement ps = con.prepareStatement(query.toString())
+ ) {
+     ps.setInt(1, codigo);
+     ps.executeUpdate();
+ 	} catch (SQLException e) {
+     e.printStackTrace();
+ 	}
+}
+
 }
