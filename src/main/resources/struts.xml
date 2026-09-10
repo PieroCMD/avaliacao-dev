@@ -7,36 +7,90 @@
 <struts>
 
     <constant name="struts.devMode" value="true" />
+
     <constant name="struts.ui.theme" value="simple" />
+
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
     <constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+
     <constant name="struts.action.excludePattern" value="/webjars/.*,/h2-console/*" />
 
-    <package name="br.com.soc.sistema" extends="struts-default" strict-method-invocation="false">
+    <package name="br.com.soc.sistema"
+             extends="struts-default"
+             strict-method-invocation="false">
+
 
         <action name="*Funcionarios"
                 class="br.com.soc.sistema.action.FuncionarioAction"
                 method="{1}">
-            <result name="success">/funcionario/cadFuncionario_b.jsp</result>
-            <result name="input">/funcionario/cadFuncionario_i.jsp</result>
-            <result name="redirect" type="redirectAction">todosFuncionarios</result>
+
+            <result name="success">
+                /funcionario/cadFuncionario_b.jsp
+            </result>
+
+            <result name="input">
+                /funcionario/cadFuncionario_i.jsp
+            </result>
+
+            <result name="redirect"
+                    type="redirectAction">
+                todosFuncionarios
+            </result>
+
         </action>
+
 
         <action name="*Agendas"
                 class="br.com.soc.sistema.action.AgendaAction"
                 method="{1}">
-            <result name="success">/agenda/cadAgenda.jsp</result>
-            <result name="input">/agenda/cadAgenda.jsp</result>
-            <result name="redirect" type="redirectAction">todosAgendas</result>
+
+            <result name="success">
+                /agenda/cadAgenda.jsp
+            </result>
+
+            <result name="input">
+                /agenda/cadAgenda.jsp
+            </result>
+
+            <result name="redirect"
+                    type="redirectAction">
+                todosAgendas
+            </result>
+
         </action>
+
 
         <action name="*Compromissos"
                 class="br.com.soc.sistema.action.CompromissoAction"
                 method="{1}">
-            <result name="success">/compromisso/cadCompromisso.jsp</result>
-            <result name="input">/compromisso/cadCompromisso.jsp</result>
-            <result name="redirect" type="redirectAction">todosCompromissos</result>
+
+            <result name="success">
+                /compromisso/cadCompromisso.jsp
+            </result>
+
+            <result name="input">
+                /compromisso/cadCompromisso.jsp
+            </result>
+
+            <result name="redirect"
+                    type="redirectAction">
+                todosCompromissos
+            </result>
+
         </action>
+
+
+        <action name="relatorioCompromissos"
+                class="br.com.soc.sistema.action.RelatorioCompromissoAction"
+                method="todos">
+
+            <result name="success">
+                /relatorio/cadRelatorioCompromisso.jsp
+            </result>
+
+        </action>
+
 
     </package>
 
