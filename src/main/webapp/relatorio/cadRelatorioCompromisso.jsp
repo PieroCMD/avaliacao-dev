@@ -67,7 +67,8 @@
             border-radius: 6px;
         }
 
-        .btn-pesquisar {
+        .btn-pesquisar,
+        .btn-excel {
             min-height: 42px;
         }
 
@@ -101,7 +102,6 @@
 
 <div class="container">
 
-    <!-- título -->
     <div class="text-center">
 
         <h1 class="titulo">
@@ -115,7 +115,6 @@
     </div>
 
 
-    <!-- mostra as mensagens de erro -->
     <s:if test="hasActionErrors()">
 
         <div class="alert alert-danger" role="alert">
@@ -127,7 +126,6 @@
     </s:if>
 
 
-    <!-- card do filtro -->
     <div class="card">
 
         <div class="card-header">
@@ -143,7 +141,6 @@
 
                 <div class="row g-3">
 
-                    <!-- data inicial -->
                     <div class="col-md-4">
 
                         <label class="form-label">
@@ -159,7 +156,6 @@
                     </div>
 
 
-                    <!-- data final -->
                     <div class="col-md-4">
 
                         <label class="form-label">
@@ -175,14 +171,26 @@
                     </div>
 
 
-                    <!-- botão pesquisar -->
-                    <div class="col-md-4 d-flex align-items-end">
+                    <div class="col-md-2 d-flex align-items-end">
 
                         <button
                             type="submit"
                             class="btn btn-primary btn-pesquisar w-100">
 
                             Pesquisar
+
+                        </button>
+
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-end">
+
+                        <button
+                            type="submit"
+                            formaction="exportarRelatorioExcel.action"
+                            class="btn btn-success btn-excel w-100">
+
+                            Exportar Excel
 
                         </button>
 
@@ -197,7 +205,6 @@
     </div>
 
 
-    <!-- tabela do relatório -->
     <div class="card tabela-card">
 
         <div class="card-header">
@@ -248,12 +255,10 @@
 
                     <tbody>
 
-                        <!-- percorre os resultados do relatório -->
                         <s:iterator value="relatorios">
 
                             <tr>
 
-                                <!-- código do funcionário -->
                                 <td class="ps-4">
 
                                     <strong>
@@ -263,7 +268,6 @@
                                 </td>
 
 
-                                <!-- nome do funcionário -->
                                 <td>
 
                                     <s:property value="funcionarioNome"/>
@@ -271,7 +275,6 @@
                                 </td>
 
 
-                                <!-- código da agenda -->
                                 <td>
 
                                     <strong>
@@ -281,7 +284,6 @@
                                 </td>
 
 
-                                <!-- nome da agenda -->
                                 <td>
 
                                     <s:property value="agendaNome"/>
@@ -289,7 +291,6 @@
                                 </td>
 
 
-                                <!-- data -->
                                 <td>
 
                                     <s:property value="data"/>
@@ -297,7 +298,6 @@
                                 </td>
 
 
-                                <!-- horário -->
                                 <td>
 
                                     <s:property value="hora"/>
@@ -309,7 +309,6 @@
                         </s:iterator>
 
 
-                        <!-- mostra mensagem quando não existem resultados -->
                         <s:if test="relatorios.isEmpty()">
 
                             <tr>
